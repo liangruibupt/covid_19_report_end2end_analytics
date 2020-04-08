@@ -42,12 +42,17 @@ cd incubator-superset
 docker-compose up
 
 docker logs --follow <container-id>
+docker-compose exec superset bash
 
 # Access the web ui
 ssh -i myKey.pem -L 8088:localhost:8088 ec2-user@EC2_IP
 #ssh -L 8088:localhost:8088 -i ~/.ssh/ruiliang-lab-key-pair-us-east1.pem ec2-user@34.232.48.10
 http://localhost:8088 or http://alb-dns/
 login by admin:admin
+
+# Superset can display maps using Mapbox. Get the API key of Mapbox and set it to MAPBOX_API_KEY.
+add MAPBOX_API_KEY=mapboxapikey to ./docker/.env
+add MAPBOX_API_KEY = get_env_variable("MAPBOX_API_KEY") to ./docker/pythonpath_dev/superset_config.py
 ```
 
 ## Quick Configuration
@@ -60,7 +65,7 @@ login by admin:admin
 
 ```bash
 # When you start from docker, add the connectors by add `jre` and `pip install in Dockerfile`
-RUN apt-get install -y default-jre
+RUN apt-get update && apt-get install -y default-jre
 
 RUN pip install --no-cache "PyAthenaJDBC>1.0.9" \
     && pip install --no-cache "PyAthena>1.2.0" \
