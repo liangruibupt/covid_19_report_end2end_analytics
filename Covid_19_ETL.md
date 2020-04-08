@@ -46,12 +46,8 @@ As you can see the Glue Crawler correctly identified number of objects in S3 and
 ![media/glue-dev-endpoint.png](media/glue-dev-endpoint.png)
 - If you want to connect to the Glue Data Catalog and run/test code on-demand in Jupyter Notebook, you can create create a `Notebook` associate with a `Dev Endpoint`.
 ![media/glue-dev-endpoint-sm-notebook.png](media/glue-dev-endpoint-sm-notebook.png)
-You can download [sample notebook](https://raw.githubusercontent.com/FraPochetti/KagglePlaygrounds/master/COVID-19-GlueETL-PySpark.ipynb) and turning into [Spark script](https://raw.githubusercontent.com/FraPochetti/KagglePlaygrounds/blob/master/COVID-19_glue_etl_job_pyspark.py)
 
-```bash
-curl -O https://raw.githubusercontent.com/FraPochetti/KagglePlaygrounds/master/COVID-19-GlueETL-PySpark.ipynb
-curl -O https://raw.githubusercontent.com/FraPochetti/KagglePlaygrounds/blob/master/COVID-19_glue_etl_job_pyspark.py
-```
+Modify the script based on you requirement or you can download [Sample ETL Spark script](script/COVID-19_glue_etl_job_pyspark.py) paste to Glue ETL job.
 
 
 ## Step 4. Crawl ETL output with Glue 

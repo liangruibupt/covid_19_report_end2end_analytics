@@ -37,9 +37,10 @@ df = ds0.toDF()
 df = flatten_df(df)
 
 df = df.select(when(df['Province/State'].isin({'NULL', '', 'missing', '--'}), None)
-                .otherwise(df['Province/State']).alias('Province/State'),
-               when(df['Country/Region'].isin({'US', 'USA'}, 'United States')
-                .otherwise(df['Country/Region']).alias('Country/Region'),
+               .otherwise(df['Province/State']).alias('Province/State'),
+               when(df['Country/Region'].isin({'US', 'USA'}), 'United States')
+                    .otherwise(df['Country/Region']).alias('Country/Region'),
+               'Country/Region',
                'Lat',
                'Long',
                when(df['Recovered_int'].isNull(), 0).otherwise(
@@ -62,9 +63,9 @@ df = df.select(when(df['Province/State'].isin({'NULL', '', 'missing', '--'}), No
     'id'
 )
 
-datasource_transformed=DynamicFrame.fromDF(df, glueContext, "ds0")
+datasource_transformed = DynamicFrame.fromDF(df, glueContext, "ds0")
 
-datasink2=glueContext.write_dynamic_frame.from_options(frame=datasource_transformed, connection_type="s3",
+datasink2 = glueContext.write_dynamic_frame.from_options(frame=datasource_transformed, connection_type="s3",
                                                          connection_options={
                                                              "path": "s3://covid-19-output-data"},
                                                          format="json", transformation_ctx="datasink2")
