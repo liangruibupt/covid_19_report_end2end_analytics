@@ -71,16 +71,6 @@ select t.*,
 from "covid19"."covid_19_output_data" t)
 where r = 1
 
-
-
-CREATE TABLE dummy2 AS SELECT
-cast(t1.zid as integer) AS orig_id,
-cast(t2.zid as integer) AS dest_id,
-ABS(RANDOM()*(45-2)-45) AS dist
-FROM dummy t1, dummy t2;
-
-
-
 SELECT count(*) FROM "covid19"."covid19_athena";
 19018
 
@@ -112,6 +102,8 @@ awsathena+rest://:@athena.{region_name}.amazonaws.com:443/{schema_name}?s3_stagi
 ```
 5. Superset connect to `covid19_athena` table within the Glue Data Catalog to pivoting the data on different dimensions
 
+![superset-dashboard](media/superset-dashboard.png)
+![superset-dashboard2](media/superset-dashboard2.png)
 
 Opitional:
 [Using Athena with the JDBC Driver](https://docs.aws.amazon.com/athena/latest/ug/connect-with-jdbc.html)
