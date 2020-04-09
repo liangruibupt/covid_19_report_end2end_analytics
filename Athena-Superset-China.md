@@ -81,7 +81,7 @@ docker-compose up
 ## Example Superset SQLAlchemy URI when create new data source
 **NOTE: For awsathena+jdbc, you need specify the EndpointOverride=<athena-china-region-endpoint>**
 - Ningxia region: EndpointOverride=athena.cn-northwest-1.amazonaws.com.cn
-- Beijing region: EndpointOverride=athena.cn-north.amazonaws.com.cn
+- Beijing region: EndpointOverride=athena.cn-north-1.amazonaws.com.cn
 ```
 awsathena+jdbc://:@athena.cn-northwest-1.amazonaws.com.cn/covid19?s3_staging_dir=s3://covid-19-output-data-zhy/&EndpointOverride=athena.cn-northwest-1.amazonaws.com.cn
 awsathena+rest://:@athena.cn-northwest-1.amazonaws.com.cn:443/covid19?s3_staging_dir=s3://covid-19-output-data-zhy/
