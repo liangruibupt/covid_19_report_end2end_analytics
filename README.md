@@ -17,6 +17,7 @@ Build a pipeline for open COVID-19 dataset. The dataset from [corona-virus-repor
 
 ## Detail step by step guide
 - [Install and Configure Superset](Install_Superset.md)
+- [PyAthena Pyathenajdbc Update for China](Athena-Superset-China.md)
 - [Covid_19_ETL step by step guide](Covid_19_ETL.md)
 
 ## Reference
