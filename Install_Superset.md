@@ -77,6 +77,9 @@ docker-compose build
 docker-compose up
 ```
 
+## AWS China region Athena connection URI handling
+[Athena-Superset-China](Athena-Superset-China.md)
+
 ## Quick Tutorials
 [Tutorials guide](https://superset.incubator.apache.org/admintutorial.html)
 
