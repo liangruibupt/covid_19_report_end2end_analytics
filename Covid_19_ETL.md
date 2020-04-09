@@ -76,12 +76,6 @@ SELECT count(*) FROM "covid19"."covid19_athena";
 
 SELECT * FROM "covid19"."covid19_athena" limit 10;
 
-# CREATE TABLE covid19_table_date
-# as select "province/state", "country/region", "lat", "long",
-#  date_parse(report_date, '%m-%d-%Y') as r_date, "confirmed", "deaths", "recovered"
-# from (
-# select t.*
-# from "covid19"."covid_table" t)
 ```
 
 ## Step 6. Visualize with Superset

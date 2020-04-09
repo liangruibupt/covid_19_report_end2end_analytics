@@ -77,26 +77,6 @@ docker-compose build
 docker-compose up
 ```
 
-## PyAthena for AWS China region
-The athena endpoint in China region is different from Global region. So below code can not work in China region:
-https://github.com/laughingman7743/PyAthena/blob/master/pyathena/sqlalchemy_athena.py#L233
-So you will encounter the error:
-```bash
-botocore.exceptions.EndpointConnectionError: Could not connect to the endpoint URL: "https://athena.athena.cn-northwest-1.amazonaws.com.cn.amazonaws.com/"
-```
-- [China (Ningxia) Region Endpoints](https://docs.amazonaws.cn/en_us/general/latest/gr/cnnorthwest_region.html) athena.cn-northwest-1.amazonaws.com.cn
-- [China (Beijing) Region Endpoints](https://docs.amazonaws.cn/en_us/general/latest/gr/cnnorth_region.html) athena.cn-north-1.amazonaws.com.cn
-
-So the workaround for sqlalchemy_athena.py
-```bash
-USER root
-RUN mv /usr/local/lib/python3.6/site-packages/pyathena/sqlalchemy_athena.py /usr/local/lib/python3.6/site-packages/pyathena/sqlalchemy_athena.py.global
-RUN curl -o /usr/local/lib/python3.6/site-packages/pyathena/sqlalchemy_athena.py https://raw.githubusercontent.com/liangruibupt/covid_19_report_end2end_analytics/master/script/china-region-sqlalchemy_athena.py
-
-#awsathena+jdbc://:@athena.cn-northwest-1.amazonaws.com.cn/covid19?s3_staging_dir=s3://covid-19-output-data-zhy/
-#awsathena+rest://:@athena.cn-northwest-1.amazonaws.com.cn:443/covid19?s3_staging_dir=s3://covid-19-output-data-zhy/
-```
-
 ## Quick Tutorials
 [Tutorials guide](https://superset.incubator.apache.org/admintutorial.html)
 
