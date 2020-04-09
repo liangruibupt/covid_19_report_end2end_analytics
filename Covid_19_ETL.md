@@ -103,20 +103,51 @@ awsathena+rest://:@athena.{region_name}.amazonaws.com:443/{schema_name}?s3_stagi
 ```
 5. Superset connect to `covid19_athena` table within the Glue Data Catalog to pivoting the data on different dimensions
 
-![superset-dashboard](media/superset-dashboard.png)
-![superset-dashboard2](media/superset-dashboard2.png)
+![superset-dashboard](media/superset-dashboard-covid.png)
+![superset-dashboard2](media/superset-dashboard-covid2.png)
 
-Opitional:
-[Using Athena with the JDBC Driver](https://docs.aws.amazon.com/athena/latest/ug/connect-with-jdbc.html)
-```bash
-[ec2-user@ incubator-superset]$ mkdir driver
-[ec2-user@ incubator-superset]$ cd driver/
-[ec2-user@ driver]$ curl -O https://s3.amazonaws.com/athena-downloads/drivers/JDBC/SimbaAthenaJDBC_2.0.9/AthenaJDBC42_2.0.9.jar
-[ec2-user@ driver]$ curl -O https://athena-downloads.s3.amazonaws.com/drivers/JDBC/SimbaAthenaJDBC_2.0.9/AthenaJDBC41_2.0.9.jar
-```
+
 ## Resource
 - [covid-19-end-to-end-analytics-with-aws-glue-athena-and-quicksight](https://francescopochetti.com/covid-19-end-to-end-analytics-with-aws-glue-athena-and-quicksight/)
 
 - [query-and-visualize-data-from-amazon-athena-with-superset](https://dev.classmethod.jp/articles/query-and-visualize-data-from-amazon-athena-with-superset/)
 
 - [PyAthena](https://github.com/laughingman7743/PyAthena#sqlalchemy)
+
+## Appndix
+- [Using Athena with the JDBC Driver](https://docs.aws.amazon.com/athena/latest/ug/connect-with-jdbc.html)
+```bash
+[ec2-user@ incubator-superset]$ mkdir driver
+[ec2-user@ incubator-superset]$ cd driver/
+[ec2-user@ driver]$ curl -O https://s3.amazonaws.com/athena-downloads/drivers/JDBC/SimbaAthenaJDBC_2.0.9/AthenaJDBC42_2.0.9.jar
+[ec2-user@ driver]$ curl -O https://athena-downloads.s3.amazonaws.com/drivers/JDBC/SimbaAthenaJDBC_2.0.9/AthenaJDBC41_2.0.9.jar
+```
+
+- Athena sample query
+```sql
+CREATE EXTERNAL TABLE `covid_table` (
+  `province/state` string, 
+  `country/region` string, 
+  `lat` double, 
+  `long` double, 
+  `report_date` string, 
+  `confirmed` bigint, 
+  `deaths` bigint, 
+  `recovered` bigint
+  )           
+ROW FORMAT SERDE 'org.openx.data.jsonserde.JsonSerDe'
+LOCATION 's3://covid-19-output-data-zhy/' ;
+
+
+SELECT * FROM "covid19"."covid_table" limit 10;
+
+CREATE TABLE covid19_table_date
+as select "province/state", "country/region", "lat", "long",
+ date_parse(report_date, '%m-%d-%Y') as r_date, "confirmed", "deaths", "recovered"
+from (
+select t.*
+from "covid19"."covid_table" t)
+
+
+SELECT * FROM "covid19"."covid19_table_date" limit 10;
+```

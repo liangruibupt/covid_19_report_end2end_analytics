@@ -10,7 +10,12 @@ https://github.com/laughingman7743/PyAthena/blob/master/pyathena/sqlalchemy_athe
 So you will encounter the error:
 
 ```bash
+# awsathena+rest URI
 botocore.exceptions.EndpointConnectionError: Could not connect to the endpoint URL: "https://athena.athena.cn-northwest-1.amazonaws.com.cn.amazonaws.com/"
+
+# awsathena+jdbc URI error
+superset_1         | DEBUG:pyathenajdbc.connection:JVM args: ['-server', '-Djava.class.path=/usr/local/lib/python3.6/site-packages/pyathenajdbc/AthenaJDBC42_2.0.9.jar', '-Dlog4j.configuration=file:/usr/local/lib/python3.6/site-packages/pyathenajdbc/log4j.properties']
+superset_1         | ERROR:superset.views.core:Unexpected error java.sql.SQLException: [Simba][AthenaJDBC](100131) An error has been thrown from the AWS SDK client. Unable to execute HTTP request: athena.athena.cn-northwest-1.amazonaws.com.cn.amazonaws.com: Name or service not known [Execution ID not available]
 ```
 - [China (Ningxia) Region Endpoints](https://docs.amazonaws.cn/en_us/general/latest/gr/cnnorthwest_region.html) athena.cn-northwest-1.amazonaws.com.cn
 - [China (Beijing) Region Endpoints](https://docs.amazonaws.cn/en_us/general/latest/gr/cnnorth_region.html) athena.cn-north-1.amazonaws.com.cn
@@ -37,33 +42,4 @@ docker-compose up
 awsathena+jdbc://:@athena.cn-northwest-1.amazonaws.com.cn/covid19?s3_staging_dir=s3://covid-19-output-data-zhy/
 awsathena+rest://:@athena.cn-northwest-1.amazonaws.com.cn:443/covid19?s3_staging_dir=s3://covid-19-output-data-zhy/
 
-```
-
-## Athena sample query
-```sql
-CREATE EXTERNAL TABLE `covid_table` (
-  `province/state` string, 
-  `country/region` string, 
-  `lat` double, 
-  `long` double, 
-  `report_date` string, 
-  `confirmed` bigint, 
-  `deaths` bigint, 
-  `recovered` bigint
-  )           
-ROW FORMAT SERDE 'org.openx.data.jsonserde.JsonSerDe'
-LOCATION 's3://covid-19-output-data-zhy/' ;
-
-
-SELECT * FROM "covid19"."covid_table" limit 10;
-
-CREATE TABLE covid19_table_date
-as select "province/state", "country/region", "lat", "long",
- date_parse(report_date, '%m-%d-%Y') as r_date, "confirmed", "deaths", "recovered"
-from (
-select t.*
-from "covid19"."covid_table" t)
-
-
-SELECT * FROM "covid19"."covid19_table_date" limit 10;
 ```
