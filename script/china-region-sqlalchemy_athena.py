@@ -230,6 +230,7 @@ class AthenaDialect(DefaultDialect):
         #   awsathena+rest://
         #   {aws_access_key_id}:{aws_secret_access_key}@athena.{region_name}.amazonaws.com:443/
         #   {schema_name}?s3_staging_dir={s3_staging_dir}&...
+        print(url)
         opts = {
             'aws_access_key_id': url.username if url.username else None,
             'aws_secret_access_key': url.password if url.password else None,
@@ -237,6 +238,7 @@ class AthenaDialect(DefaultDialect):
             'schema_name': url.database if url.database else 'default'
         }
         opts.update(url.query)
+        print(opts)
         return [[], opts]
 
     @reflection.cache
