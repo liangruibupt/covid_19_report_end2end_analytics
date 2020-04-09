@@ -12,12 +12,13 @@ So below code can not work in China region:
 
 https://github.com/laughingman7743/PyAthena/blob/master/pyathena/sqlalchemy_athena.py#L233
 
-So you will encounter the error:
+You will encounter the error:
 
 ```bash
 # awsathena+rest URI
 botocore.exceptions.EndpointConnectionError: Could not connect to the endpoint URL: "https://athena.athena.cn-northwest-1.amazonaws.com.cn.amazonaws.com/"
 ```
+The issue https://github.com/laughingman7743/PyAthena/issues/134 has been tracked.
 
 The workaround for sqlalchemy_athena.py
 
@@ -36,6 +37,7 @@ docker-compose build
 docker-compose up
 ```
 
+
 ## Pyathenajdbc for AWS China region
 
 The athena endpoint in China region is different from Global region. 
@@ -47,13 +49,14 @@ So below code can not work in China region:
 
 https://github.com/laughingman7743/PyAthenaJDBC/blob/master/pyathenajdbc/sqlalchemy_athena.py#L120
 
-So you will encounter the error:
+You will encounter the error:
 
 ```bash
 # awsathena+jdbc URI error
 superset_1         | DEBUG:pyathenajdbc.connection:JVM args: ['-server', '-Djava.class.path=/usr/local/lib/python3.6/site-packages/pyathenajdbc/AthenaJDBC42_2.0.9.jar', '-Dlog4j.configuration=file:/usr/local/lib/python3.6/site-packages/pyathenajdbc/log4j.properties']
 superset_1         | ERROR:superset.views.core:Unexpected error java.sql.SQLException: [Simba][AthenaJDBC](100131) An error has been thrown from the AWS SDK client. Unable to execute HTTP request: athena.athena.cn-northwest-1.amazonaws.com.cn.amazonaws.com: Name or service not known [Execution ID not available]
 ```
+The issue https://github.com/laughingman7743/PyAthenaJDBC/issues/97 has been tracked.
 
 The workaround for sqlalchemy_athena.py
 
@@ -72,7 +75,8 @@ docker-compose build
 docker-compose up
 ```
 
-## Superset SQLAlchemy URI when create new data source
+
+## Example Superset SQLAlchemy URI when create new data source
 ```
 awsathena+jdbc://:@athena.cn-northwest-1.amazonaws.com.cn/covid19?s3_staging_dir=s3://covid-19-output-data-zhy/
 awsathena+rest://:@athena.cn-northwest-1.amazonaws.com.cn:443/covid19?s3_staging_dir=s3://covid-19-output-data-zhy/
