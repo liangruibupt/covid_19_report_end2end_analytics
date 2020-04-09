@@ -70,6 +70,8 @@ USER root
 RUN mv /usr/local/lib/python3.6/site-packages/pyathenajdbc/sqlalchemy_athena.py /usr/local/lib/python3.6/site-packages/pyathenajdbc/sqlalchemy_athena.py.global
 RUN curl -o /usr/local/lib/python3.6/site-packages/pyathenajdbc/sqlalchemy_athena.py https://raw.githubusercontent.com/liangruibupt/covid_19_report_end2end_analytics/master/script/china-region-pyathenajdbc-sqlalchemy_athena.py
 
+EndpointOverride
+
 # Rebuild and Restart superset
 docker-compose build
 docker-compose up
@@ -77,8 +79,11 @@ docker-compose up
 
 
 ## Example Superset SQLAlchemy URI when create new data source
+**NOTE: For awsathena+jdbc, you need specify the EndpointOverride=<athena-china-region-endpoint>**
+- Ningxia region: EndpointOverride=athena.cn-northwest-1.amazonaws.com.cn
+- Beijing region: EndpointOverride=athena.cn-north.amazonaws.com.cn
 ```
-awsathena+jdbc://:@athena.cn-northwest-1.amazonaws.com.cn/covid19?s3_staging_dir=s3://covid-19-output-data-zhy/
+awsathena+jdbc://:@athena.cn-northwest-1.amazonaws.com.cn/covid19?s3_staging_dir=s3://covid-19-output-data-zhy/&EndpointOverride=athena.cn-northwest-1.amazonaws.com.cn
 awsathena+rest://:@athena.cn-northwest-1.amazonaws.com.cn:443/covid19?s3_staging_dir=s3://covid-19-output-data-zhy/
 
 ```
