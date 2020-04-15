@@ -22,3 +22,4 @@ Build a pipeline for open COVID-19 dataset. The dataset from [corona-virus-repor
 
 ## Reference
 [covid-19-end-to-end-analytics-with-aws-glue-athena-and-quicksight](https://francescopochetti.com/covid-19-end-to-end-analytics-with-aws-glue-athena-and-quicksight/)
+[A public data lake for analysis of COVID-19 data](https://aws.amazon.com/blogs/big-data/a-public-data-lake-for-analysis-of-covid-19-data/)

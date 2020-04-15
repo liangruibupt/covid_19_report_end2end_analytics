@@ -4,6 +4,8 @@
 - [Apache Superset installation](https://superset.apache.org/installation.html)
 
 ## Start with Docker
+- [sample Dockerfile](script/Superset/Dockerfile)
+- [sample docker-compose.yml](script/Superset/docker-compose.yml)
 ```bash
 # ssh to EC2 m5.xlarge or m5.2xlarge instance
 sudo yum update -y
