@@ -19,6 +19,8 @@ Build a pipeline for open COVID-19 dataset. The dataset from [corona-virus-repor
 - [Install and Configure Superset](Install_Superset.md)
 - [PyAthena Pyathenajdbc Update for China](Athena-Superset-China.md)
 - [Covid_19_ETL step by step guide](Covid_19_ETL.md)
+- [The public data lake for analysis of COVID-19 data](Public-Covid19-Datalake.md)
+- [用于分析新冠肺炎 COVID-19 的 AWS 公共数据湖示例](Public-Covid19-Datalake-cn.md)
 
 ## Reference
 [covid-19-end-to-end-analytics-with-aws-glue-athena-and-quicksight](https://francescopochetti.com/covid-19-end-to-end-analytics-with-aws-glue-athena-and-quicksight/)

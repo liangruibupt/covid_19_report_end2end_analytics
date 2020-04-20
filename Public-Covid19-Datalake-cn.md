@@ -1,4 +1,4 @@
-# 用于分析COVID-19数据的AWS公共数据湖示例
+# 用于分析新冠肺炎 COVID-19 的 AWS 公共数据湖示例
 
 该数据湖由公共可读的 Amazon S3 存储桶（s3://covid19-lake）中的数据组成。 本文章显示了如何通过AWS Glue 数据目录为该数据设置表格定义，以将其公开给分析引擎。 然后使用无服务器 SQL 查询引擎 Amazon Athena 查询 AWS COVID-19 数据。最后利用Apache Superset 进行可视化分析和仪表盘展示。
 
