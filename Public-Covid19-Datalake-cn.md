@@ -91,6 +91,8 @@ cdk deploy --profile ${AWS_GLOBAL_PROFILE} --outputs-file "stack-outputs.json"
 
 ![crawler-execution](media/public-covid19-crawler-execution.png)
 
+![tables-list](media/public-covid19-tables-list.png)
+
 ### 检查由 AWS Glue 爬虫程序生成的数据目录
 
 例如，以下屏幕快照显示了包含约翰.霍普金斯大学新冠肺炎COVID-19 全球数据表的元数据。
