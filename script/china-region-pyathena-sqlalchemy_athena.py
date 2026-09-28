@@ -239,7 +239,7 @@ class AthenaDialect(DefaultDialect):
             'schema_name': url.database if url.database else 'default'
         }
         opts.update(url.query)
-        print(opts)
+        print({k: ('***' if 'secret' in k.lower() or 'access_key' in k.lower() else v) for k, v in opts.items()})
         return [[], opts]
 
     @reflection.cache
