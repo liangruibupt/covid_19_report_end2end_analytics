@@ -13,7 +13,7 @@ class AthenaDialect():
             'region_name': re.sub(r'^athena\.([a-z0-9-]+)\.amazonaws\.(com.cn|com)$', r'\1', url.host),
             'schema_name': url.database if url.database else 'default'
         }
-        print(opts)
+        print({k: ('***' if 'secret' in k.lower() or 'access_key' in k.lower() else v) for k, v in opts.items()})
         opts.update(url.query)
         return [[], opts]
 
@@ -49,10 +49,10 @@ _myurl_bjs.query = {
 
 x = AthenaDialect()
 _myopts = x.create_connect_args(_myurl)
-print(_myopts)
+print([_myopts[0], {k: ('***' if 'secret' in k.lower() or 'access_key' in k.lower() else v) for k, v in _myopts[1].items()}])
 
 _myopts = x.create_connect_args(_myurl_zhy)
-print(_myopts)
+print([_myopts[0], {k: ('***' if 'secret' in k.lower() or 'access_key' in k.lower() else v) for k, v in _myopts[1].items()}])
 
 _myopts = x.create_connect_args(_myurl_bjs)
-print(_myopts)
+print([_myopts[0], {k: ('***' if 'secret' in k.lower() or 'access_key' in k.lower() else v) for k, v in _myopts[1].items()}])
